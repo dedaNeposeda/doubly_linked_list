@@ -13,6 +13,9 @@ int main()
 	dbl_linked_list_print(list);
 	dbl_linked_list_insert(list, 0, 1);
 	dbl_linked_list_print(list);
+	dbl_linked_list_delete(&list);
+	dbl_linked_list_print(list);
+	dbl_linked_list_push_back(list, 2);
 	dbl_linked_list_pop_back(list);
 	dbl_linked_list_print(list);
 	dbl_linked_list_pop_front(list);

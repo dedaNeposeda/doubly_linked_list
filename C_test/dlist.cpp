@@ -8,6 +8,10 @@ struct dbl_linked_list* dbl_linked_list_init()
 }
 void dbl_linked_list_delete(struct dbl_linked_list** list)
 {
+	if (dbl_linked_list_isnull(*list))
+	{
+		return;
+	}
 	struct node* tmp = (*list)->head;
 	struct node* next = NULL;
 	while (tmp)
@@ -21,6 +25,10 @@ void dbl_linked_list_delete(struct dbl_linked_list** list)
 }
 void dbl_linked_list_push_front(struct dbl_linked_list* list, int value)
 {
+	if (dbl_linked_list_isnull(list))
+	{
+		return;
+	}
 	struct node *item = (struct node*)malloc(sizeof(struct node));
 	if(list->head)
 		list->head->prev = item;
@@ -35,6 +43,10 @@ void dbl_linked_list_push_front(struct dbl_linked_list* list, int value)
 }
 void dbl_linked_list_push_back(struct dbl_linked_list* list, int value)
 {
+	if (dbl_linked_list_isnull(list))
+	{
+		return;
+	}
 	struct node* item = (struct node*)malloc(sizeof(struct node));
 	if (list->tail)
 		list->tail->next = item;
@@ -49,6 +61,10 @@ void dbl_linked_list_push_back(struct dbl_linked_list* list, int value)
 }
 void dbl_linked_list_pop_front(struct dbl_linked_list* list)
 {
+	if (dbl_linked_list_isnull(list))
+	{
+		return;
+	}
 	if (list->head == NULL)
 		return;
 	struct node* p_head;
@@ -63,6 +79,10 @@ void dbl_linked_list_pop_front(struct dbl_linked_list* list)
 }
 void dbl_linked_list_pop_back(struct dbl_linked_list* list)
 {
+	if (dbl_linked_list_isnull(list))
+	{
+		return;
+	}
 	if (list->tail == NULL)
 		return;
 	struct node* p_tail;
@@ -77,6 +97,10 @@ void dbl_linked_list_pop_back(struct dbl_linked_list* list)
 }
 struct node* dbl_linked_list_get_item(struct dbl_linked_list* list, size_t idx)
 {
+	if (dbl_linked_list_isnull(list))
+	{
+		return NULL;
+	}
 	struct node* tmp = list->head;
 	size_t i = 0;
 	while (tmp && i < idx)
@@ -88,6 +112,10 @@ struct node* dbl_linked_list_get_item(struct dbl_linked_list* list, size_t idx)
 }
 void dbl_linked_list_insert(struct dbl_linked_list* list, size_t idx, int value)
 {
+	if (dbl_linked_list_isnull(list))
+	{
+		return;
+	}
 	struct node* elem = NULL;
 	struct node* item = NULL;
 	elem = dbl_linked_list_get_item(list, idx);
@@ -106,6 +134,10 @@ void dbl_linked_list_insert(struct dbl_linked_list* list, size_t idx, int value)
 }
 void dbl_linked_list_erase(struct dbl_linked_list* list, size_t idx)
 {
+	if (dbl_linked_list_isnull(list))
+	{
+		return;
+	}
 	struct node* elem = NULL;
 	elem = dbl_linked_list_get_item(list, idx);
 	if (elem == NULL)
@@ -136,12 +168,11 @@ void dbl_linked_list_erase(struct dbl_linked_list* list, size_t idx)
 }
 void dbl_linked_list_print(struct dbl_linked_list* list)
 {
-	struct node* tmp = list->head;
-	if (!list->size)
+	if (dbl_linked_list_isnull(list))
 	{
-		printf("Empty list!\n");
 		return;
 	}
+	struct node* tmp = list->head;
 	while (tmp)
 	{
 		printf("%d ",tmp->value);
@@ -149,3 +180,16 @@ void dbl_linked_list_print(struct dbl_linked_list* list)
 	}
 	printf("\n");
 }
+int dbl_linked_list_isnull(struct dbl_linked_list* list)
+{
+	if (list == NULL)
+	{
+		printf("Empty list!\n");
+		return 1;
+	}
+	else
+	{
+		return 0;
+	}
+}
+

@@ -25,5 +25,6 @@ struct node* dbl_linked_list_get_item(struct dbl_linked_list* list, size_t idx);
 void dbl_linked_list_insert(struct dbl_linked_list* list, size_t idx, int value);
 void dbl_linked_list_erase(struct dbl_linked_list* list, size_t idx);
 void dbl_linked_list_print(struct dbl_linked_list* list);
+int dbl_linked_list_isnull(struct dbl_linked_list* list);
 #endif
 
